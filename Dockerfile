@@ -9,7 +9,7 @@ LABEL description="Docker image for OpenAPRS system."
 # Disable Prompt During Packages Installation
 ARG DEBIAN_FRONTEND=noninteractive
 
-ADD ./buildworld.sh /root/buildworld.sh
+ADD ./config.yml /root
 
 # Update Ubuntu Software repository
 RUN apt-get update
@@ -17,13 +17,14 @@ RUN apt-get update
 # Install nginx, php-fpm and supervisord from ubuntu repository
 RUN apt-get install -y nginx php-fpm supervisor git automake autotools-dev autoconf libtool libc-bin libc6 libc6-dev libcxxtools-dev libossp-uuid-dev libreadline-dev libc++-dev binutils gcc g++ \
                        zlib1g zlib1g-dev libpthread-stubs0-dev make pkg-config libmemcached-dev memcached mysql-server mysql-client libmysqlclient-dev libmysql++ mosquitto mosquitto-clients \
-                       cmake cmake-gui cmake-curses-gui libssl-dev logrotate cron php-pear php-dev php-rrd && \
+                       cmake cmake-gui cmake-curses-gui libssl-dev logrotate cron php-pear php-dev php-rrd nano php-yaml && \
     rm -rf /var/lib/apt/lists/* && \
     apt clean
 
 RUN \
     cd /root && \
-    git clone https://github.com/omnidynmc/stomprrd.git
+    git clone https://github.com/omnidynmc/stomprrd.git && \
+    cp config.yml stomprrd
 
 # Define the ENV variable
 ENV nginx_vhost /etc/nginx/sites-available/default

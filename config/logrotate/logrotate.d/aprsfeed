@@ -1,0 +1,16 @@
+/root/aprsfeed/logs/*.log {
+        daily
+        dateext
+        missingok
+        rotate 30
+        compress
+        delaycompress
+        notifempty
+        create 0640 root root
+        sharedscripts
+        prerotate
+        endscript
+        postrotate
+                [ -s /root/aprsfeed/aprsfeed.pid ] && kill -USR1 `cat /root/aprsfeed/aprsfeed.pid`
+        endscript
+}

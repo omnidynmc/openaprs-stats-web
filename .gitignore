@@ -2,3 +2,5 @@
 *.log-*
 *.conf
 /env
+/home/web/png
+/home/web/rrd
