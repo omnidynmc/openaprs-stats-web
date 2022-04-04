@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+  openaprs-stats-web:
+    build: .
+    ports:
+      - "8003:8003"
+    env_file:
+      - env
+    volumes:
+      - ./home:/app
+    networks:
+      - openaprs-net
+networks:
+  openaprs-net:
+    external: true
