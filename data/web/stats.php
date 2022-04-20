@@ -67,7 +67,7 @@ foreach($config AS $section) {
 <html>
   <head>
     <title>OpenAPRS Stats</title>
-    <meta http-equiv="refresh" content="30">
+    <meta http-equiv="refresh" content="300">
   </head>
   <body>
 <?php foreach ($sections AS $section) { ?>
